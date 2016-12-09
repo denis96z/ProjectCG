@@ -2,30 +2,45 @@
 using System.Collections.Generic;
 using System.Drawing;
 
+using System.Windows.Forms;
+
 namespace Lungs
 {
     class Screen
     {
         public static readonly Color DEFAULT_BACK_COLOR = Color.Black;
 
-        private Graphics _Canvas;
-        private ZBuffer _ZBuffer;
         private int _Width, _Height;
+        private int _HalfWidth, _HalfHeight;
         private Color _BackColor;
 
-        public Screen(Graphics g, int width, int height)
+        private Graphics _Graphics;
+
+        private Bitmap _Bitmap;
+        private Graphics _BitmapGraphics;
+
+        private ProgressBar _ProgressBar;
+
+        private ZBuffer _ZBuffer;
+
+        public Screen(Graphics g, int width, int height, ProgressBar progressBar)
         {
-            _Canvas = g;
+            _Graphics = g;
+
+            _Bitmap = new Bitmap(width, height);
+            _BitmapGraphics = Graphics.FromImage(_Bitmap);
 
             _Width = width;
             _Height = height;
 
-            _HalfWidth = _Width / 2;
-            _HalfHeight = _Height / 2;
+            _HalfWidth = width / 2;
+            _HalfHeight = height / 2;
 
             _BackColor = DEFAULT_BACK_COLOR;
 
             _ZBuffer = new ZBuffer(width, height);
+
+            _ProgressBar = progressBar;
         }
 
         public Color BackColor
@@ -36,7 +51,8 @@ namespace Lungs
 
         public void Clear()
         {
-            _Canvas.Clear(_BackColor);
+            _BitmapGraphics.Clear(_BackColor);
+            _Graphics.Clear(_BackColor);
             _ZBuffer.Clear();
         }
 
@@ -44,16 +60,22 @@ namespace Lungs
         {
             Clear();
 
-            Vertex lv = new Vertex(scene.Light.Position.X,
-                scene.Light.Position.Y, scene.Light.Position.Z);
-            lv.Color = Color.White;
+            DrawModel(scene.Model, scene.Light);
 
-            DrawVertex(lv);
-            
-            for (int i = 0; i < scene.Model.TrianglesCount; i++)
+            _Graphics.DrawImage(_Bitmap, 0, 0);
+        }
+
+        private void DrawModel(Model model, Light light)
+        {
+            _ProgressBar.Minimum = 0;
+            _ProgressBar.Maximum = model.TrianglesCount;
+
+            _ProgressBar.Value = 0;
+
+            foreach (var triangle in model)
             {
-                Triangle3D t = scene.Model[i];
-                DrawTriangle(t, scene.Light);
+                DrawTriangle(triangle, light);
+                _ProgressBar.Value++;
             }
         }
 
@@ -70,8 +92,6 @@ namespace Lungs
                 }
             }
         }
-
-        private int _HalfWidth, _HalfHeight;
 
         public void DrawVertex(Vertex v)
         {
@@ -91,7 +111,7 @@ namespace Lungs
 
             if (_ZBuffer.SetValue(x, y, z))
             {
-                _Canvas.FillRectangle(new SolidBrush(v.Color), x, y, 1, 1);
+                _BitmapGraphics.FillRectangle(new SolidBrush(v.Color), x, y, 1, 1);
             }
         }
     }
@@ -149,7 +169,6 @@ namespace Lungs
             get { return _Count; }
         }
     }
-
 
     class Triangle3DRasterizer
     {

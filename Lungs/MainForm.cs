@@ -61,7 +61,7 @@ namespace Lungs
         private void button1_Click(object sender, System.EventArgs e)
         {
             _Screen = new Screen(CreateGraphics(),
-                ClientSize.Width, ClientSize.Height);
+                ClientSize.Width, ClientSize.Height, progressBar1);
             _Screen.DrawScene(_Scene);
         }
     }
