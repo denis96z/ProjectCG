@@ -89,10 +89,9 @@ namespace Lungs
 
             double z = v.Position.Z;
 
-            if (z < _ZBuffer[x, y])
+            if (_ZBuffer.SetValue(x, y, z))
             {
                 _Canvas.FillRectangle(new SolidBrush(v.Color), x, y, 1, 1);
-                _ZBuffer[x, y] = z;
             }
         }
     }

@@ -14,10 +14,22 @@
             _Height = height;
         }
 
+        public bool SetValue(int x, int y, double z)
+        {
+            if (z < _Items[x, y])
+            {
+                _Items[x, y] = z;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public double this[int x, int y]
         {
             get { return _Items[x, y]; }
-            set { _Items[x, y] = value; }
         }
 
         public double Width

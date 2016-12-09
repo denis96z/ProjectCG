@@ -79,9 +79,4 @@
         protected InvisibleSpotSceneObject(InvisibleSpotSceneObject visibleSpotSceneObject) :
             base(visibleSpotSceneObject) { }
     }
-
-    abstract class ComplexSceneObject : SceneObject
-    {
-        //public abstract void Modify(CSceneObjectModification modification);
-    }
 }
