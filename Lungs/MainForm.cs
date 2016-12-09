@@ -54,7 +54,7 @@ namespace Lungs
                     break;
             }
 
-            _Scene.ModifyTriangles(m);
+            _Scene.Model.Modify(m);
             _Screen.DrawScene(_Scene);
         }
 

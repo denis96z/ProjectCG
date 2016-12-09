@@ -50,9 +50,9 @@ namespace Lungs
 
             DrawVertex(lv);
             
-            for (int i = 0; i < scene.TrianglesCount; i++)
+            for (int i = 0; i < scene.Model.TrianglesCount; i++)
             {
-                Triangle3D t = scene.GetTriangle(i);
+                Triangle3D t = scene.Model[i];
                 DrawTriangle(t, scene.Light);
             }
         }
@@ -472,10 +472,5 @@ namespace Lungs
 
             return Color.FromArgb(r, g, b);
         }
-    }
-
-    class ShadowManager
-    {
-        private ZBuffer _ShadowBuffer;
     }
 }

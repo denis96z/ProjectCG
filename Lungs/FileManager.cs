@@ -38,7 +38,7 @@ namespace Lungs
                 Vertex v3 = GetVertex(xTriangle, "vertex3");
                 MaterialProperties mp = GetMaterial(xTriangle);
                 Triangle3D t = new Triangle3D(v1, v2, v3, n, mp);
-                scene.AddTriangle(t);
+                scene.Model.AddTriangle(t);
             }
 
             return scene;
