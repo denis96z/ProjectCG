@@ -8,14 +8,12 @@ namespace Lungs
         {
             InitializeComponent();
 
-            _Scene = new Scene();
+            FileManager fm = new FileManager();
+            _Scene = fm.LoadModel("clean.xml");
 
-            FileManager fm = new FileManager("clean.stl");
-            fm.LoadScene(_Scene);
-
-            _Scene.Light.Position.Z = -200;
             _Scene.Light.Position.X = 50;
             _Scene.Light.Position.Y = 10;
+            _Scene.Light.Position.Z = -200;
         }
 
         private Scene _Scene;

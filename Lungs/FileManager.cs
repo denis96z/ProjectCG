@@ -1,58 +1,80 @@
-﻿using System.IO;
+﻿using System.Xml;
 
 namespace Lungs
 {
     class FileManager
     {
-        private string _FileName;
-        private StreamReader _FileReader;
+        public FileManager() { }
 
-        public FileManager(string fileName)
+        public Scene LoadModel(string fileName)
         {
-            _FileName = fileName;
-            _FileReader = new StreamReader(fileName);
+            ModelFileReader mfr = new ModelFileReader(fileName);
+            Scene scene = mfr.GetModel();
+            return scene;
+        }
+    }
+
+    class ModelFileReader
+    {
+        private XmlDocument _XMLModel;
+
+        public ModelFileReader(string fileName)
+        {
+            _XMLModel = new XmlDocument();
+            _XMLModel.Load(fileName);
         }
 
-        public void LoadScene(Scene scene)
+        public Scene GetModel()
         {
-            _FileReader.ReadLine();
+            XmlElement xModel = _XMLModel.DocumentElement;
 
-            string s = null;
-            char[] splitters = new char[] { ' ' };
+            Scene scene = new Scene();
 
-            MaterialProperties mp = new MaterialProperties(0.85, 0.54, 0.148);
-
-            while ((s = _FileReader.ReadLine().TrimStart()) != null)
+            foreach (XmlNode xTriangle in xModel)
             {
-                string[] items = s.Replace('.', ',').Split(splitters);
-
-                if (items[0] != "facet")
-                {
-                    break;
-                }
-
-                Vector3D normal = new Vector3D(double.Parse(items[2]),
-                    double.Parse(items[3]), double.Parse(items[4]));
-
-                _FileReader.ReadLine();
-
-                items = _FileReader.ReadLine().TrimStart().Replace('.', ',').Split(splitters);
-                Vertex v1 = new Vertex(double.Parse(items[1]),
-                    double.Parse(items[2]), double.Parse(items[3]));
-
-                items = _FileReader.ReadLine().TrimStart().Replace('.', ',').Split(splitters);
-                Vertex v2 = new Vertex(double.Parse(items[1]),
-                    double.Parse(items[2]), double.Parse(items[3]));
-
-                items = _FileReader.ReadLine().TrimStart().Replace('.', ',').Split(splitters);
-                Vertex v3 = new Vertex(double.Parse(items[1]),
-                    double.Parse(items[2]), double.Parse(items[3]));
-
-                _FileReader.ReadLine();
-                _FileReader.ReadLine();
-
-                scene.AddTriangle(new Triangle3D(v1, v2, v3, normal, mp));
+                Vector3D n = GetNormal(xTriangle);
+                Vertex v1 = GetVertex(xTriangle, "vertex1");
+                Vertex v2 = GetVertex(xTriangle, "vertex2");
+                Vertex v3 = GetVertex(xTriangle, "vertex3");
+                MaterialProperties mp = GetMaterial(xTriangle);
+                Triangle3D t = new Triangle3D(v1, v2, v3, n, mp);
+                scene.AddTriangle(t);
             }
+
+            return scene;
+        }
+
+        private Vector3D GetNormal(XmlNode xTriangle)
+        {
+            XmlNode xNormal = xTriangle.SelectSingleNode("normal");
+
+            double x = double.Parse(xNormal.Attributes["x"].Value);
+            double y = double.Parse(xNormal.Attributes["y"].Value);
+            double z = double.Parse(xNormal.Attributes["z"].Value);
+
+            return new Vector3D(x, y, z);
+        }
+
+        private Vertex GetVertex(XmlNode xTriangle, string name)
+        {
+            XmlNode xVertex = xTriangle.SelectSingleNode(name);
+
+            double x = double.Parse(xVertex.Attributes["x"].Value);
+            double y = double.Parse(xVertex.Attributes["y"].Value);
+            double z = double.Parse(xVertex.Attributes["z"].Value);
+
+            return new Vertex(x, y, z);
+        }
+
+        private MaterialProperties GetMaterial(XmlNode xTriangle)
+        {
+            XmlNode xMaterial = xTriangle.SelectSingleNode("material");
+
+            double kr = double.Parse(xMaterial.Attributes["kr"].Value);
+            double kg = double.Parse(xMaterial.Attributes["kg"].Value);
+            double kb = double.Parse(xMaterial.Attributes["kb"].Value);
+
+            return new MaterialProperties(kr, kg, kb);
         }
     }
 }
