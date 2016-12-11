@@ -28,70 +28,305 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this._ProgressBar = new System.Windows.Forms.ProgressBar();
+            this._MainMenu = new System.Windows.Forms.MenuStrip();
+            this._FileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._Line1 = new System.Windows.Forms.ToolStripSeparator();
+            this._ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelRotationOXMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelRotationOYMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelRotationOZMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelScalingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelScalingInMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._ModelScalingOutMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.lightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementUpMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementDownMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementRightMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementLeftMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementForwardMI = new System.Windows.Forms.ToolStripMenuItem();
+            this._LightMovementBackMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this._OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this._MainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // _ProgressBar
             // 
-            this.button1.Location = new System.Drawing.Point(559, 267);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this._ProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._ProgressBar.ForeColor = System.Drawing.SystemColors.Desktop;
+            this._ProgressBar.Location = new System.Drawing.Point(-1, 280);
+            this._ProgressBar.Name = "_ProgressBar";
+            this._ProgressBar.Size = new System.Drawing.Size(769, 23);
+            this._ProgressBar.TabIndex = 4;
             // 
-            // button2
+            // _MainMenu
             // 
-            this.button2.Location = new System.Drawing.Point(560, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this._MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._FileMenuItem,
+            this._ModelMenuItem,
+            this.lightToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this._MainMenu.Location = new System.Drawing.Point(0, 0);
+            this._MainMenu.Name = "_MainMenu";
+            this._MainMenu.Size = new System.Drawing.Size(768, 24);
+            this._MainMenu.TabIndex = 5;
             // 
-            // button3
+            // _FileMenuItem
             // 
-            this.button3.Location = new System.Drawing.Point(560, 43);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this._FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._OpenMenuItem,
+            this._SaveMenuItem,
+            this._ExportMenuItem,
+            this._Line1,
+            this._ExitMenuItem});
+            this._FileMenuItem.Name = "_FileMenuItem";
+            this._FileMenuItem.Size = new System.Drawing.Size(48, 20);
+            this._FileMenuItem.Text = "Файл";
             // 
-            // progressBar1
+            // _OpenMenuItem
             // 
-            this.progressBar1.Location = new System.Drawing.Point(13, 13);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(138, 23);
-            this.progressBar1.TabIndex = 4;
+            this._OpenMenuItem.Name = "_OpenMenuItem";
+            this._OpenMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._OpenMenuItem.Text = "Открыть";
+            this._OpenMenuItem.Click += new System.EventHandler(this._OpenMenuItem_Click);
+            // 
+            // _SaveMenuItem
+            // 
+            this._SaveMenuItem.Name = "_SaveMenuItem";
+            this._SaveMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._SaveMenuItem.Text = "Сохранить";
+            // 
+            // _ExportMenuItem
+            // 
+            this._ExportMenuItem.Name = "_ExportMenuItem";
+            this._ExportMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._ExportMenuItem.Text = "Экспорт";
+            // 
+            // _Line1
+            // 
+            this._Line1.Name = "_Line1";
+            this._Line1.Size = new System.Drawing.Size(129, 6);
+            // 
+            // _ExitMenuItem
+            // 
+            this._ExitMenuItem.Name = "_ExitMenuItem";
+            this._ExitMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._ExitMenuItem.Text = "Выход";
+            // 
+            // _ModelMenuItem
+            // 
+            this._ModelMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotationToolStripMenuItem,
+            this._ModelScalingMenuItem});
+            this._ModelMenuItem.Name = "_ModelMenuItem";
+            this._ModelMenuItem.Size = new System.Drawing.Size(62, 20);
+            this._ModelMenuItem.Text = "Модель";
+            // 
+            // rotationToolStripMenuItem
+            // 
+            this.rotationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ModelRotationOXMI,
+            this._ModelRotationOYMI,
+            this._ModelRotationOZMI});
+            this.rotationToolStripMenuItem.Name = "rotationToolStripMenuItem";
+            this.rotationToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.rotationToolStripMenuItem.Text = "Вращение";
+            // 
+            // _ModelRotationOXMI
+            // 
+            this._ModelRotationOXMI.Name = "_ModelRotationOXMI";
+            this._ModelRotationOXMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this._ModelRotationOXMI.Size = new System.Drawing.Size(131, 22);
+            this._ModelRotationOXMI.Text = "OX";
+            this._ModelRotationOXMI.Click += new System.EventHandler(this.ModifyModel);
+            // 
+            // _ModelRotationOYMI
+            // 
+            this._ModelRotationOYMI.Name = "_ModelRotationOYMI";
+            this._ModelRotationOYMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this._ModelRotationOYMI.Size = new System.Drawing.Size(131, 22);
+            this._ModelRotationOYMI.Text = "OY";
+            this._ModelRotationOYMI.Click += new System.EventHandler(this.ModifyModel);
+            // 
+            // _ModelRotationOZMI
+            // 
+            this._ModelRotationOZMI.Name = "_ModelRotationOZMI";
+            this._ModelRotationOZMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this._ModelRotationOZMI.Size = new System.Drawing.Size(131, 22);
+            this._ModelRotationOZMI.Text = "OZ";
+            this._ModelRotationOZMI.Click += new System.EventHandler(this.ModifyModel);
+            // 
+            // _ModelScalingMenuItem
+            // 
+            this._ModelScalingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ModelScalingInMI,
+            this._ModelScalingOutMI});
+            this._ModelScalingMenuItem.Name = "_ModelScalingMenuItem";
+            this._ModelScalingMenuItem.Size = new System.Drawing.Size(179, 22);
+            this._ModelScalingMenuItem.Text = "Масштабирование";
+            // 
+            // _ModelScalingInMI
+            // 
+            this._ModelScalingInMI.Name = "_ModelScalingInMI";
+            this._ModelScalingInMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this._ModelScalingInMI.Size = new System.Drawing.Size(189, 22);
+            this._ModelScalingInMI.Text = "Увеличение";
+            this._ModelScalingInMI.Click += new System.EventHandler(this.ModifyModel);
+            // 
+            // _ModelScalingOutMI
+            // 
+            this._ModelScalingOutMI.Name = "_ModelScalingOutMI";
+            this._ModelScalingOutMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this._ModelScalingOutMI.Size = new System.Drawing.Size(189, 22);
+            this._ModelScalingOutMI.Text = "Уменьшение";
+            this._ModelScalingOutMI.Click += new System.EventHandler(this.ModifyModel);
+            // 
+            // lightToolStripMenuItem
+            // 
+            this.lightToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._LightMovementMI});
+            this.lightToolStripMenuItem.Name = "lightToolStripMenuItem";
+            this.lightToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.lightToolStripMenuItem.Text = "Свет";
+            // 
+            // _LightMovementMI
+            // 
+            this._LightMovementMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._LightMovementUpMI,
+            this._LightMovementDownMI,
+            this._LightMovementRightMI,
+            this._LightMovementLeftMI,
+            this._LightMovementForwardMI,
+            this._LightMovementBackMI});
+            this._LightMovementMI.Name = "_LightMovementMI";
+            this._LightMovementMI.Size = new System.Drawing.Size(154, 22);
+            this._LightMovementMI.Text = "Перемещение";
+            // 
+            // _LightMovementUpMI
+            // 
+            this._LightMovementUpMI.Name = "_LightMovementUpMI";
+            this._LightMovementUpMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this._LightMovementUpMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementUpMI.Text = "Вверх";
+            this._LightMovementUpMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // _LightMovementDownMI
+            // 
+            this._LightMovementDownMI.Name = "_LightMovementDownMI";
+            this._LightMovementDownMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this._LightMovementDownMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementDownMI.Text = "Вниз";
+            this._LightMovementDownMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // _LightMovementRightMI
+            // 
+            this._LightMovementRightMI.Name = "_LightMovementRightMI";
+            this._LightMovementRightMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this._LightMovementRightMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementRightMI.Text = "Вправо";
+            this._LightMovementRightMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // _LightMovementLeftMI
+            // 
+            this._LightMovementLeftMI.Name = "_LightMovementLeftMI";
+            this._LightMovementLeftMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this._LightMovementLeftMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementLeftMI.Text = "Влево";
+            this._LightMovementLeftMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // _LightMovementForwardMI
+            // 
+            this._LightMovementForwardMI.Name = "_LightMovementForwardMI";
+            this._LightMovementForwardMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this._LightMovementForwardMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementForwardMI.Text = "Вперед";
+            this._LightMovementForwardMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // _LightMovementBackMI
+            // 
+            this._LightMovementBackMI.Name = "_LightMovementBackMI";
+            this._LightMovementBackMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this._LightMovementBackMI.Size = new System.Drawing.Size(155, 22);
+            this._LightMovementBackMI.Text = "Назад";
+            this._LightMovementBackMI.Click += new System.EventHandler(this.ModifyLight);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.helpToolStripMenuItem.Text = "Справка";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(768, 247);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 302);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.BackColor = System.Drawing.SystemColors.Desktop;
+            this.ClientSize = new System.Drawing.Size(768, 302);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this._ProgressBar);
+            this.Controls.Add(this._MainMenu);
             this.KeyPreview = true;
+            this.MainMenuStrip = this._MainMenu;
             this.Name = "MainForm";
-            this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.Text = "Модель легких человека";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this._MainMenu.ResumeLayout(false);
+            this._MainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar _ProgressBar;
+        private System.Windows.Forms.MenuStrip _MainMenu;
+        private System.Windows.Forms.ToolStripMenuItem _FileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _OpenMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _SaveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ExportMenuItem;
+        private System.Windows.Forms.ToolStripSeparator _Line1;
+        private System.Windows.Forms.ToolStripMenuItem _ExitMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ModelMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.OpenFileDialog _OpenFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem rotationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ModelScalingMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _ModelRotationOXMI;
+        private System.Windows.Forms.ToolStripMenuItem _ModelRotationOYMI;
+        private System.Windows.Forms.ToolStripMenuItem _ModelRotationOZMI;
+        private System.Windows.Forms.ToolStripMenuItem _ModelScalingInMI;
+        private System.Windows.Forms.ToolStripMenuItem _ModelScalingOutMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementUpMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementDownMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementRightMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementLeftMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementForwardMI;
+        private System.Windows.Forms.ToolStripMenuItem _LightMovementBackMI;
     }
 }
 

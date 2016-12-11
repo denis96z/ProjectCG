@@ -6,11 +6,11 @@ namespace Lungs
     {
         public FileManager() { }
 
-        public Scene LoadModel(string fileName)
+        public Model LoadModel(string fileName)
         {
             ModelFileReader mfr = new ModelFileReader(fileName);
-            Scene scene = mfr.GetModel();
-            return scene;
+            Model model = mfr.GetModel();
+            return model;
         }
     }
 
@@ -24,11 +24,11 @@ namespace Lungs
             _XMLModel.Load(fileName);
         }
 
-        public Scene GetModel()
+        public Model GetModel()
         {
             XmlElement xModel = _XMLModel.DocumentElement;
 
-            Scene scene = new Scene();
+            Model model = new Model();
 
             foreach (XmlNode xTriangle in xModel)
             {
@@ -38,10 +38,10 @@ namespace Lungs
                 Vertex v3 = GetVertex(xTriangle, "vertex3");
                 MaterialProperties mp = GetMaterial(xTriangle);
                 Triangle3D t = new Triangle3D(v1, v2, v3, n, mp);
-                scene.Model.AddTriangle(t);
+                model.AddTriangle(t);
             }
 
-            return scene;
+            return model;
         }
 
         private Vector3D GetNormal(XmlNode xTriangle)

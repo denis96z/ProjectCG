@@ -77,6 +77,8 @@ namespace Lungs
                 DrawTriangle(triangle, light);
                 _ProgressBar.Value++;
             }
+
+            _ProgressBar.Value = 0;
         }
 
         public void DrawTriangle(Triangle3D t, Light light)

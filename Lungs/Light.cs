@@ -2,6 +2,9 @@
 {
     class Light : VisibleSpotSceneObject
     {
+        public static readonly Vector3D DEFAULT_POSITION =
+            new Vector3D(0, 0, -200);
+
         private LightProperties _Properties;
 
         // ------------------------------------------------
@@ -9,8 +12,7 @@
         // ------------------------------------------------
 
         public Light(LightProperties properties) :
-            this(Vector3D.DEFAULT_X_VALUE, Vector3D.DEFAULT_Y_VALUE,
-                Vector3D.DEFAULT_Z_VALUE, properties) { }
+            this(DEFAULT_POSITION.X, DEFAULT_POSITION.Y, DEFAULT_POSITION.Z, properties) { }
 
         public Light(double x, double y, double z, LightProperties properties) :
             base(x, y, z)
