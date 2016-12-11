@@ -6,8 +6,11 @@ namespace Lungs
     public partial class MainForm : Form
     {
         private Scene _Scene;
-        private Model _Model;
+        private Model _Model1, _Model2;
         private Screen _Screen;
+        private Nicotine _Nicotine;
+
+        double t = 0;
 
         public MainForm()
         {
@@ -20,16 +23,20 @@ namespace Lungs
             Constants.SCALING_COEFFICIENT_OUT = 0.7;
         }
 
-        private void _OpenMenuItem_Click(object sender, System.EventArgs e)
+        private void _OpenMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (_OpenFileDialog.ShowDialog() == DialogResult.OK)
+                if (_FolderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
                     FileManager fm = new FileManager();
-                    _Model = fm.LoadModel(_OpenFileDialog.FileName);
 
-                    _Scene.Model = _Model;
+                    _Model1 = fm.LoadModel(_FolderBrowserDialog.SelectedPath + @"\clean.xml");
+                    _Model2 = fm.LoadModel(_FolderBrowserDialog.SelectedPath + @"\dirty.xml");
+
+                    _Nicotine = new Nicotine(_Model1, 0, _Model2, 24);
+
+                    _Scene.Model = _Nicotine.Smoke(0.01);
 
                     _Screen = new Screen(pictureBox1.CreateGraphics(),
                         pictureBox1.Width, pictureBox1.Height, _ProgressBar);
@@ -77,13 +84,28 @@ namespace Lungs
                         return;
                 }
 
-                _Model.Modify(m);
+                _Model1.Modify(m);
+                _Model2.Modify(m);
+                _Scene.Model.Modify(m);
                 _Screen.DrawScene(_Scene);
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.ToString(), "Ошибка!");
             }
+        }
+
+        private void Smoke(object sender, EventArgs e)
+        {
+            double t = _SmokingTimeTB.Value;
+
+            if (_SmokingTimeTB.Value == 0)
+            {
+                t = 0.01;
+            }
+
+            _Scene.Model = _Nicotine.Smoke(t);
+            _Screen.DrawScene(_Scene);
         }
 
         private void ModifyLight(object sender, EventArgs e)

@@ -54,9 +54,11 @@
             this._LightMovementBackMI = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this._OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this._FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this._SmokingTimeTB = new System.Windows.Forms.TrackBar();
             this._MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._SmokingTimeTB)).BeginInit();
             this.SuspendLayout();
             // 
             // _ProgressBar
@@ -271,11 +273,23 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(768, 247);
+            this.pictureBox1.Size = new System.Drawing.Size(768, 229);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            // 
+            // _SmokingTimeTB
+            // 
+            this._SmokingTimeTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._SmokingTimeTB.AutoSize = false;
+            this._SmokingTimeTB.Location = new System.Drawing.Point(0, 23);
+            this._SmokingTimeTB.Maximum = 48;
+            this._SmokingTimeTB.Name = "_SmokingTimeTB";
+            this._SmokingTimeTB.Size = new System.Drawing.Size(768, 22);
+            this._SmokingTimeTB.TabIndex = 8;
+            this._SmokingTimeTB.Scroll += new System.EventHandler(this.Smoke);
             // 
             // MainForm
             // 
@@ -283,6 +297,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(768, 302);
+            this.Controls.Add(this._SmokingTimeTB);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this._ProgressBar);
             this.Controls.Add(this._MainMenu);
@@ -294,6 +309,7 @@
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._SmokingTimeTB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,7 +328,6 @@
         private System.Windows.Forms.ToolStripMenuItem lightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.OpenFileDialog _OpenFileDialog;
         private System.Windows.Forms.ToolStripMenuItem rotationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _ModelScalingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _ModelRotationOXMI;
@@ -327,6 +342,8 @@
         private System.Windows.Forms.ToolStripMenuItem _LightMovementLeftMI;
         private System.Windows.Forms.ToolStripMenuItem _LightMovementForwardMI;
         private System.Windows.Forms.ToolStripMenuItem _LightMovementBackMI;
+        private System.Windows.Forms.FolderBrowserDialog _FolderBrowserDialog;
+        private System.Windows.Forms.TrackBar _SmokingTimeTB;
     }
 }
 
