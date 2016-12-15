@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Lungs
@@ -10,14 +11,17 @@ namespace Lungs
         private Screen _Screen;
         private Nicotine _Nicotine;
 
-        double t = 0;
+        [DllImport("kernel32.dll")]
+        extern static short QueryPerformanceCounter(ref long x);
+        [DllImport("kernel32.dll")]
+        extern static short QueryPerformanceFrequency(ref long x);
 
         public MainForm()
         {
             InitializeComponent();
             _Scene = new Scene();
 
-            Constants.MOVEMENT_DISTANCE = 5;
+            Constants.MOVEMENT_DISTANCE = 50;
             Constants.ROTATION_ANGLE = Math.PI / 6;
             Constants.SCALING_COEFFICIENT_IN = 1.5;
             Constants.SCALING_COEFFICIENT_OUT = 0.7;
@@ -40,7 +44,7 @@ namespace Lungs
 
                     _Screen = new Screen(pictureBox1.CreateGraphics(),
                         pictureBox1.Width, pictureBox1.Height, _ProgressBar);
-                    _Screen.DrawScene(_Scene);
+                    ShowScene();
                 }
             }
             catch (Exception exception)
@@ -87,7 +91,7 @@ namespace Lungs
                 _Model1.Modify(m);
                 _Model2.Modify(m);
                 _Scene.Model.Modify(m);
-                _Screen.DrawScene(_Scene);
+                ShowScene();
             }
             catch (Exception exception)
             {
@@ -97,15 +101,45 @@ namespace Lungs
 
         private void Smoke(object sender, EventArgs e)
         {
-            double t = _SmokingTimeTB.Value;
-
-            if (_SmokingTimeTB.Value == 0)
+            try
             {
-                t = 0.01;
-            }
+                double t = _SmokingTimeTB.Value;
 
-            _Scene.Model = _Nicotine.Smoke(t);
-            _Screen.DrawScene(_Scene);
+                if (_SmokingTimeTB.Value == 0)
+                {
+                    t = 0.01;
+                }
+
+                _Scene.Model = _Nicotine.Smoke(t);
+                _Screen.DrawScene(_Scene);
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка моделирования!");
+            }
+        }
+
+        private void ShowScene()
+        {
+            try
+            {
+                long t1 = 0, t2 = 0, freq = 0;
+
+                QueryPerformanceCounter(ref t1);
+                _Screen.DrawScene(_Scene);
+                QueryPerformanceCounter(ref t2);
+
+                QueryPerformanceFrequency(ref freq);
+
+                double t = (double)(t2 - t1) / freq;
+
+                Text = "Модель легких человека. Время подготовки изображения: " +
+                    t.ToString() + " с.";
+            }
+            catch
+            {
+
+            }
         }
 
         private void ModifyLight(object sender, EventArgs e)
@@ -146,7 +180,7 @@ namespace Lungs
                 }
 
                 _Scene.Light.Modify(m);
-                _Screen.DrawScene(_Scene);
+                ShowScene();
             }
             catch (Exception exception)
             {

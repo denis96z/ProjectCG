@@ -98,32 +98,36 @@
             // _OpenMenuItem
             // 
             this._OpenMenuItem.Name = "_OpenMenuItem";
-            this._OpenMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._OpenMenuItem.Size = new System.Drawing.Size(152, 22);
             this._OpenMenuItem.Text = "Открыть";
             this._OpenMenuItem.Click += new System.EventHandler(this._OpenMenuItem_Click);
             // 
             // _SaveMenuItem
             // 
             this._SaveMenuItem.Name = "_SaveMenuItem";
-            this._SaveMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._SaveMenuItem.Size = new System.Drawing.Size(152, 22);
             this._SaveMenuItem.Text = "Сохранить";
+            this._SaveMenuItem.Visible = false;
             // 
             // _ExportMenuItem
             // 
             this._ExportMenuItem.Name = "_ExportMenuItem";
-            this._ExportMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._ExportMenuItem.Size = new System.Drawing.Size(152, 22);
             this._ExportMenuItem.Text = "Экспорт";
+            this._ExportMenuItem.Visible = false;
             // 
             // _Line1
             // 
             this._Line1.Name = "_Line1";
-            this._Line1.Size = new System.Drawing.Size(129, 6);
+            this._Line1.Size = new System.Drawing.Size(149, 6);
+            this._Line1.Visible = false;
             // 
             // _ExitMenuItem
             // 
             this._ExitMenuItem.Name = "_ExitMenuItem";
-            this._ExitMenuItem.Size = new System.Drawing.Size(132, 22);
+            this._ExitMenuItem.Size = new System.Drawing.Size(152, 22);
             this._ExitMenuItem.Text = "Выход";
+            this._ExitMenuItem.Visible = false;
             // 
             // _ModelMenuItem
             // 
@@ -267,17 +271,23 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.helpToolStripMenuItem.Text = "Справка";
+            this.helpToolStripMenuItem.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.pictureBox1.Location = new System.Drawing.Point(0, 45);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(768, 229);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            // 
+            // _FolderBrowserDialog
+            // 
+            this._FolderBrowserDialog.ShowNewFolderButton = false;
             // 
             // _SmokingTimeTB
             // 

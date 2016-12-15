@@ -8,7 +8,7 @@ namespace Lungs
 {
     class Screen
     {
-        public static readonly Color DEFAULT_BACK_COLOR = Color.Black;
+        public static readonly Color DEFAULT_BACK_COLOR = Color.LightGray;
 
         private int _Width, _Height;
         private int _HalfWidth, _HalfHeight;
